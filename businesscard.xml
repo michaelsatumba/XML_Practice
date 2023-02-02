@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="businesscard.css" ?>
+<BusinessCard>
+  <Name>John Doe</Name>
+  <Phone type="home">555-555-5555</Phone>
+  <Phone type="work" primary="primary">555-555-5555</Phone>
+  <Phone type="mobile">555-555-5555</Phone>
+  <Email>steve@gmail.com</Email>
+</BusinessCard>

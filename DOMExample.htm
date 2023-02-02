@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card DOM Example</title>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            // Get the element with id "showBusinessCard" and add a click event listener to it
+            document.querySelector("#showBusinessCard").addEventListener("click", function () {
+                // Get the element with id "xmldata"
+                var xml = document.querySelector("#xmldata");
+
+                // Get the "Name" element's text content
+                var name = xml.querySelector("Name").textContent;
+
+                // Get all "Phone" elements
+                var phones = xml.querySelectorAll("Phone");
+
+                // Get all "Email" elements
+                var emails = xml.querySelectorAll("Email");
+
+                // String to store phone information
+                var phoneList = "";
+
+                // String to store email information
+                var emailList = "";
+
+                // Loop through each phone and get its type and primary attributes,
+                // and add it to the phoneList string
+                for (var i = 0; i < phones.length; i++) {
+                    var phone = phones[i];
+                    var type = phone.getAttribute("type");
+                    var primary = phone.getAttribute("primary");
+                    if (primary == "primary") {
+                        phoneList += type + " (" + primary + "): " + phone.textContent + "<br>";
+                    } else {
+                        phoneList += type + ": " + phone.textContent + "<br>";
+                    }
+                }
+
+                // Loop through each email and add it to the emailList string
+                for (var i = 0; i < emails.length; i++) {
+                    var email = emails[i];
+                    emailList += email.textContent + "<br>";
+                }
+
+                // Concatenate the name, phoneList, and emailList strings into a single html string
+                var html = "<h1>" + name + "</h1>";
+                html += "<h2>Phones</h2>";
+                html += phoneList;
+                html += "<h2>Emails</h2>";
+                html += emailList;
+
+                // Set the body's innerHTML to the generated html string
+                document.body.innerHTML = html;
+            }, false);
+
+        })
+    </script>
+</head>
+
+<body>
+    <xml id="xmldata" style="display:none">
+
+        <BusinessCard>
+            <Name>John Doe</Name>
+            <Phone type="home">555-555-5555</Phone>
+            <Phone type="work" primary="primary">555-555-5555</Phone>
+            <Phone type="mobile">555-555-5555</Phone>
+            <Email>steve@gmail.com</Email>
+        </BusinessCard>
+    </xml>
+    <button id="showBusinessCard">Show Business Card</button>
+</body>
+
+</html>
